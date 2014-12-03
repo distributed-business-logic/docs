@@ -1,0 +1,97 @@
+{
+    "title": "Rule schema for Distributed Business Logic project",
+    "version": "0.1.0",
+    "type": "object",
+    "properties": {
+        "title": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "license": {
+            "type": "string"
+        },
+        "version": {
+            "type": "string",
+            "description": "Version of rule. Please use semver.",
+            "pattern": "^(/[0-1]{1,3}\\.[0-1]{1,3}\\.[0-1]{1,3})[0-9A-Za-z-+]*$"
+        },
+        "dependencies": {
+            "type": "object",
+            "properties": {
+                "required": {
+                    "type": "array",
+                    "description": "Ordered list of arguments. E.g.: [\"build-essential\", \"cmake\"]"
+                },
+                "recommended": {
+                    "type": "array",
+                    "description": "Ordered list of arguments. E.g.: [\"clang\", \"cling\"]"
+                },
+                "must_be_run_before": {
+                    "type": "array",
+                    "description": "Ordered list of arguments. E.g.: [\"business-role-name\"]"
+                },
+                "must_be_run_after": {
+                    "type": "array",
+                    "description": "Ordered list of arguments. E.g.: [\"business-role-name\"]"
+                },
+                "additionalProperties": true
+            }
+        },
+        "author": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Person or company that authored or owns this rule."
+                },
+                "contact": {
+                    "type": "string",
+                    "description": "Method of contacting for kudos or bug reports. E.g.: email or IRC handle"
+                },
+                "additionalProperties": true
+            }
+        },
+        "code": {
+            "type": "object",
+            "properties": {
+                "language": {
+                    "type": "string",
+                    "description": "Programming language. E.g.: Python 2.7.*"
+                },
+                "code": {
+                    "type": "string",
+                    "description": "URL to source-code or inline source-code. URL can be to a zip, tar.gz or tar.xz."
+                },
+                "program_arguments": {
+                    "type": "array",
+                    "description": "Ordered list of arguments. E.g.: [5, {\"payload\": \"blob\", \"encoding\": \"base64\"}]"
+                },
+                "language_arguments": {
+                    "type": "array",
+                    "description": "Ordered list of arguments. E.g.: [\"-O3\", \"--std=c++11\"]"
+                },
+                "environ": {
+                    "type": "object",
+                    "description": "Environmental variables",
+                    "additionalProperties": true
+                },
+                "entry_point": {
+                    "type": "string",
+                    "description": "Entry point of program. E.g.: main"
+                }
+            },
+            "required": [
+                "language",
+                "code"
+            ]
+        },
+        "additionalProperties": false
+    },
+    "required": [
+        "title",
+        "version",
+        "code"
+    ]
+}
